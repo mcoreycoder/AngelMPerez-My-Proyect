@@ -48,7 +48,7 @@ class Registration extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      Name: '',
+      Type: '',
       Input: '',
       Output: '',
       Description: ''
@@ -69,16 +69,34 @@ class Registration extends React.Component{
     // alert('A name was submitted: ' + this.state.fName+ ' '+this.state.lName);
     
     console.log(arr)
-    axios.get('http://localhost:4000/')
+    axios.post('http://localhost:4000/',this.state)
     .then(function (response) {
-     let item=response.data
-      console.log(item[0].Type);
+    //  arr=response.config.data
+      axios.get('http://localhost:4000')
+      .then(function (response) {
+        arr=response.data
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+    console.log(response.config.data);
     })
     .catch(function (error) {
       // handle error
       console.log(error);
     })
-    arr.push(this.state)
+    // arr.push(this.state)
+  //   axios.get('http://localhost:4000')
+  // .then(function (response) {
+  //   arr=response.data
+  //   console.log(response);
+  // })
+  // .catch(function (error) {
+  //   // handle error
+  //   console.log(error);
+  // })
   }
  render(){
      return (
@@ -87,7 +105,7 @@ class Registration extends React.Component{
       
         <fieldset>
           <form onSubmit={this.handleSubmit}>
-          Name:  <input type='text' value={this.state.value} name='Name' placeholder='Name' onChange={this.handleChange}></input><br></br>
+          Type:  <input type='text' value={this.state.value} name='Type' placeholder='Type' onChange={this.handleChange}></input><br></br>
           Input: <input type="text" value={this.state.value} name="Input" placeholder="Input"  onChange={this.handleChange}></input><br></br>
           Output: <input type="text" value={this.state.value} name="Output" placeholder="Output"  onChange={this.handleChange}></input><br></br>
           Description: <input type="text" value={this.state.value} name="Description" placeholder="Description" onChange={this.handleChange}></input><br></br>
@@ -107,7 +125,7 @@ class List extends React.Component{
     let x = arr.map((item, index)=>
       <div key={index}>
       <h3>--------------------------</h3>
-      <h3>Name: {item.Name}</h3>
+      <h3>Type: {item.Type}</h3>
       <h3>Input: {item.Input}</h3>
       <h3>Output: {item.Output}</h3>
       <h3>Description: {item.Description}</h3>
