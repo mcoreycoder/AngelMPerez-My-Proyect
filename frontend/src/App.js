@@ -56,6 +56,7 @@ class Create extends React.Component{
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleOnClick = this.handleOnClick.bind(this)
   }
 
   handleChange(event){
@@ -68,7 +69,6 @@ class Create extends React.Component{
   handleSubmit(event){
     event.preventDefault();
     // alert('A name was submitted: ' + this.state.fName+ ' '+this.state.lName);
-    
     console.log(arr)
     axios.post('http://localhost:4000/',this.state)
     .then(function (response) {
@@ -89,6 +89,18 @@ class Create extends React.Component{
       console.log(error);
     })
   }
+
+  handleOnClick(event){
+    event.preventDefault();
+    axios.delete('http://localhost:4000/', {data: { foo: 'bar' }})
+    .then(function(response){
+      console.log(response)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  }
+
  render(){
       // let x = arr.map((item, index)=>
       //   <div key={index}>
@@ -114,8 +126,10 @@ class Create extends React.Component{
           <textarea rows="4" cols="50" value={this.state.value} name="Description" placeholder='Description' onChange={this.handleChange}/>
           
           {/* Description: <input type="file" value={this.state.value} name="Description" placeholder="Description" onChange={this.handleChange}></input><br></br> */}
-         <br/><input type="submit"  value="Submit"></input>
-
+          <br/><input type="submit"  value="Create"></input>
+          <button onClick={this.handleOnClick}>Update</button>
+          <button>Delete</button>
+          
           </form>    
         </fieldset>
 

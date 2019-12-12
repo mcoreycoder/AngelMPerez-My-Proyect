@@ -27,6 +27,15 @@ function BinarySearch(Item,Arr){
     console.log(found)
     return found
 }
-
-test=[1,2,3,5,6,7,9,10]
-BinarySearch(8,test)
+test1=[1,2,3,5,6,7,9,10,12] 
+BinarySearch(3,test1)
+console.log('-------------------')
+test2=[9,8,7,6,2,1]
+BinarySearch(7,test2)
+console.log('-------------------')
+test1=['a','b','c','d','e','f','g','h'] 
+BinarySearch('g',test1)
+console.log('-------------------')
+test1=['a','b','c','d','e','f','g','h'] 
+BinarySearch('p',test1)
+console.log('-------------------')
