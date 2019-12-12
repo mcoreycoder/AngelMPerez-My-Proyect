@@ -88,18 +88,19 @@ class Create extends React.Component{
       // handle error
       console.log(error);
     })
-    // arr.push(this.state)
-  //   axios.get('http://localhost:4000')
-  // .then(function (response) {
-  //   arr=response.data
-  //   console.log(response);
-  // })
-  // .catch(function (error) {
-  //   // handle error
-  //   console.log(error);
-  // })
   }
  render(){
+      // let x = arr.map((item, index)=>
+      //   <div key={index}>
+      //   <h3>--------------------------</h3>
+      //   <h3>Type: {item.Type}</h3>
+      //   <h3>Name: {item.Name}</h3>
+      //   <h3>Input: {item.Input}</h3>
+      //   <h3>Output: {item.Output}</h3>
+      //   <h3>Description: {item.Description}</h3>
+      //   <h3>--------------------------</h3>
+      //   </div>
+      // )
      return (
       <div>
         <h2>Create</h2>
@@ -110,15 +111,18 @@ class Create extends React.Component{
           Name:  <input type='text' value={this.state.value} name='Name' placeholder='Name' onChange={this.handleChange}></input><br></br>
           Input: <input type="text" value={this.state.value} name="Input" placeholder="Input"  onChange={this.handleChange}></input><br></br>
           Output: <input type="text" value={this.state.value} name="Output" placeholder="Output"  onChange={this.handleChange}></input><br></br>
-          <textarea rows="4" cols="50" placeholder='Description'/>
+          <textarea rows="4" cols="50" value={this.state.value} name="Description" placeholder='Description' onChange={this.handleChange}/>
           
           {/* Description: <input type="file" value={this.state.value} name="Description" placeholder="Description" onChange={this.handleChange}></input><br></br> */}
          <br/><input type="submit"  value="Submit"></input>
 
           </form>    
         </fieldset>
+
+        {/* <h2>List</h2>
+          {x} */}
       </div>
-      
+    
     );
   }  
 }
