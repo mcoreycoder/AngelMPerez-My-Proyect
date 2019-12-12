@@ -19,7 +19,7 @@ export default function BasicExample() {
         <ul>
           
           <li>
-            <Link to="/">Registration</Link>
+            <Link to="/">Create</Link>
           </li>
           <li>
             <Link to="/List">List</Link>
@@ -30,7 +30,7 @@ export default function BasicExample() {
 
         <Switch>
           <Route exact path="/">
-            <Registration />
+            <Create />
           </Route>
           <Route path="/List">
             <List />
@@ -44,11 +44,12 @@ export default function BasicExample() {
 // You can think of these components as "pages"
 // in your app.
 
-class Registration extends React.Component{
+class Create extends React.Component{
   constructor(props){
     super(props);
     this.state={
       Type: '',
+      Name:'',
       Input: '',
       Output: '',
       Description: ''
@@ -101,15 +102,18 @@ class Registration extends React.Component{
  render(){
      return (
       <div>
-        <h2>Registration</h2>
+        <h2>Create</h2>
       
         <fieldset>
           <form onSubmit={this.handleSubmit}>
           Type:  <input type='text' value={this.state.value} name='Type' placeholder='Type' onChange={this.handleChange}></input><br></br>
+          Name:  <input type='text' value={this.state.value} name='Name' placeholder='Name' onChange={this.handleChange}></input><br></br>
           Input: <input type="text" value={this.state.value} name="Input" placeholder="Input"  onChange={this.handleChange}></input><br></br>
           Output: <input type="text" value={this.state.value} name="Output" placeholder="Output"  onChange={this.handleChange}></input><br></br>
-          Description: <input type="text" value={this.state.value} name="Description" placeholder="Description" onChange={this.handleChange}></input><br></br>
-         <input type="submit"  value="Submit"></input>
+          <textarea rows="4" cols="50" placeholder='Description'/>
+          
+          {/* Description: <input type="file" value={this.state.value} name="Description" placeholder="Description" onChange={this.handleChange}></input><br></br> */}
+         <br/><input type="submit"  value="Submit"></input>
 
           </form>    
         </fieldset>
@@ -126,6 +130,7 @@ class List extends React.Component{
       <div key={index}>
       <h3>--------------------------</h3>
       <h3>Type: {item.Type}</h3>
+      <h3>Name: {item.Name}</h3>
       <h3>Input: {item.Input}</h3>
       <h3>Output: {item.Output}</h3>
       <h3>Description: {item.Description}</h3>
