@@ -95,6 +95,14 @@ class Create extends React.Component{
     event.preventDefault();
     axios.delete(`http://localhost:4000/${this.state.Name}`)
     .then(function(response){
+      axios.get('http://localhost:4000')
+      .then(function(response){
+        arr = response.data
+        console.log(response)
+      })
+      .catch(function(error){
+        console.log(error)
+      })
       console.log(response.data)
     })
     .catch(function(error){
@@ -106,6 +114,14 @@ class Create extends React.Component{
     event.preventDefault();
     axios.patch(`http://localhost:4000/${this.state.Name}`,this.state)
     .then(function(response){
+      axios.get('http://localhost:4000')
+      .then(function(response){
+        arr = response.data
+        console.log(response)
+      })
+      .catch(function(error){
+        console.log(error)
+      })
       console.log(response.data)
     })
     .catch(function(error){
