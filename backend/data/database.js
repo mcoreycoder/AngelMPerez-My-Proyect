@@ -95,7 +95,7 @@ const readFilter=(type)=>{
   })
   return prom
 }
-const update=(insert,type)=>{
+const update=(insert,name)=>{
   const prom = new Promise((resolve, reject)=>{
     MongoClient.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true }, function(err,client){
       if(err){
@@ -104,7 +104,7 @@ const update=(insert,type)=>{
       else{
         const collection = client.db("Proyect").collection("MyProyect");
         console.log("update")
-        collection.updateOne({"Type":type},{$set: insert},function(err,result){
+        collection.updateOne({"Name":name},{$set: insert},function(err,result){
           if(err){
             reject(err)
           }
@@ -129,7 +129,7 @@ const erase=(insert)=>{
         const collection = client.db("Proyect").collection("MyProyect");
         console.log("delete")
         
-        collection.deleteOne({'Type':insert}, function(err, result) {
+        collection.deleteOne({'Name':insert}, function(err, result) {
           if(err){
             reject(err)
           }

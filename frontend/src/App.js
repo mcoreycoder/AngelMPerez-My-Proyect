@@ -56,7 +56,8 @@ class Create extends React.Component{
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleOnClick = this.handleOnClick.bind(this)
+    this.handleOnClick1 = this.handleOnClick1.bind(this)
+    this.handleOnClick2 = this.handleOnClick2.bind(this)
   }
 
   handleChange(event){
@@ -90,11 +91,22 @@ class Create extends React.Component{
     })
   }
 
-  handleOnClick(event){
+  handleOnClick1(event){
     event.preventDefault();
-    axios.delete('http://localhost:4000/', {data: { foo: 'bar' }})
+    axios.delete(`http://localhost:4000/${this.state.Name}`)
     .then(function(response){
-      console.log(response)
+      console.log(response.data)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+  }
+
+  handleOnClick2(event){
+    event.preventDefault();
+    axios.patch(`http://localhost:4000/${this.state.Name}`,this.state)
+    .then(function(response){
+      console.log(response.data)
     })
     .catch(function(error){
       console.log(error)
@@ -124,11 +136,10 @@ class Create extends React.Component{
           Input: <input type="text" value={this.state.value} name="Input" placeholder="Input"  onChange={this.handleChange}></input><br></br>
           Output: <input type="text" value={this.state.value} name="Output" placeholder="Output"  onChange={this.handleChange}></input><br></br>
           <textarea rows="4" cols="50" value={this.state.value} name="Description" placeholder='Description' onChange={this.handleChange}/>
-          
           {/* Description: <input type="file" value={this.state.value} name="Description" placeholder="Description" onChange={this.handleChange}></input><br></br> */}
           <br/><input type="submit"  value="Create"></input>
-          <button onClick={this.handleOnClick}>Update</button>
-          <button>Delete</button>
+          <button onClick={this.handleOnClick2}> Update</button>
+          <button onClick={this.handleOnClick1}>Delete</button>
           
           </form>    
         </fieldset>

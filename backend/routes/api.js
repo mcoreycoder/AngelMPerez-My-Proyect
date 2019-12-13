@@ -24,13 +24,13 @@ server.post('/',async function(req,res){
     res.send('success')
 })
 
-server.patch('/:type',async function(req,res){
-    res.send(await app.update(req.body,req.params.type))
+server.patch('/:name',async function(req,res){
+    res.send(await app.update(req.body,req.params.name))
 })
 
-server.delete('/:type',async function(req,res){
-    let result = await app.erase(req.params.type)
+server.delete('/:name',async function(req,res){
+    let result = await app.erase(req.params.name)
     // console.log(req.params)
     console.log(result)
-    res.send('removed : '+ req.params.type )
+    res.send('removed : '+ req.params.name )
 })
