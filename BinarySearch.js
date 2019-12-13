@@ -7,6 +7,7 @@
 function BinarySearch(Item,Arr){
     
     let found = false //indicate if the item was finded
+    let index
     let bottom = 0 //floor of the array
     let top = Arr.length //ceil of the array
     let half // half is the index of the array 
@@ -25,7 +26,9 @@ function BinarySearch(Item,Arr){
         }
     }
     console.log(found)
-    return found
+    if(found){return (`Item founded in position ${half}`)}
+    else{return (`Item not founded`)}
+    
 }
 test1=[1,2,3,5,6,7,9,10,12] 
 BinarySearch(3,test1)
