@@ -7,14 +7,14 @@
 function BinarySearch(Item,Arr){
     
     let found = false //indicate if the item was finded
-    let index
+    // let index
     let bottom = 0 //floor of the array
     let top = Arr.length //ceil of the array
     let half // half is the index of the array 
     
     while((bottom<=top) && !found){ // it will search until the top and the bottom overlap
         half=Math.floor((bottom+top)/2)
-        console.log(half)
+        // console.log(half)
         if(Item==Arr[half]){ // check against the item in the middle of the array
             found=true
         }
@@ -26,8 +26,8 @@ function BinarySearch(Item,Arr){
         }
     }
     console.log(found)
-    if(found){return (`Item founded in position ${half}`)}
-    else{return (`Item not founded`)}
+    if(found){console.log(`Item founded in position ${half}`)}
+    else{console.log(`Item not founded`)}
     
 }
 test1=[1,2,3,5,6,7,9,10,12] 
