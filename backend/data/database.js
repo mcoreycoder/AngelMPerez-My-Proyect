@@ -1,4 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId = require('objectid')
 require('dotenv').config()
 
 const uri = process.env.ATLAS_CONNECTION;
@@ -95,7 +96,7 @@ const readFilter=(type)=>{
   })
   return prom
 }
-const update=(insert,name)=>{
+const update=(insert,_id)=>{
   const prom = new Promise((resolve, reject)=>{
     MongoClient.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true }, function(err,client){
       if(err){
@@ -104,7 +105,7 @@ const update=(insert,name)=>{
       else{
         const collection = client.db("Proyect").collection("MyProyect");
         console.log("update")
-        collection.updateOne({"Name":name},{$set: insert},function(err,result){
+        collection.updateOne({"_id":ObjectId(_id)},{$set: insert},function(err,result){
           if(err){
             reject(err)
           }
@@ -119,7 +120,7 @@ const update=(insert,name)=>{
   })
   return prom
 }
-const erase=(insert)=>{
+const erase=(_id)=>{
   const prom =new Promise((resolve,reject)=>{
     MongoClient.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true }, function(err,client){
       if(err){
@@ -129,7 +130,7 @@ const erase=(insert)=>{
         const collection = client.db("Proyect").collection("MyProyect");
         console.log("delete")
         
-        collection.deleteOne({'Name':insert}, function(err, result) {
+        collection.deleteOne({'_id':ObjectId(_id)}, function(err, result) {
           if(err){
             reject(err)
           }
