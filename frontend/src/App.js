@@ -56,7 +56,7 @@ class Create extends React.Component{
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
+    // this.handleDelete = this.handleDelete.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.read=this.read.bind(this);
   }
@@ -99,18 +99,6 @@ class Create extends React.Component{
     this.read()
   }
 
-  async handleDelete(event){
-    event.preventDefault();
-    await axios.delete(`http://localhost:4000/${this.state.Name}`)
-    .then(function(response){
-      console.log(response.data)
-    })
-    .catch(function(error){
-      console.log(error)
-    })
-    this.read()
-  }
-
   async handleUpdate(event){
     event.preventDefault();
     // this.forms()
@@ -144,7 +132,7 @@ forms(){
         {this.forms()}
         <button onClick={this.handleSubmit}>Create</button>
         {/* <button onClick={this.handleUpdate}>Update</button> */}
-        <button onClick={this.handleDelete}>Delete</button>
+        {/* <button onClick={this.handleDelete}>Delete</button> */}
       </div>
     );
   }  
@@ -152,6 +140,19 @@ forms(){
 
 class List extends React.Component{
  
+  async handleDelete(item){
+    // event.preventDefault();
+    // console.log(event)
+    await axios.delete(`http://localhost:4000/${item._id}`)
+    .then(function(response){
+      console.log(response.data)
+    })
+    .catch(function(error){
+      console.log(error)
+    })
+    // this.read()
+  }
+
   render(){
     let x = arr.map((item, index)=>
       <div key={index}>
@@ -163,7 +164,7 @@ class List extends React.Component{
       <h3>Output: {item.Output}</h3>
       <h3>Description: {item.Description}</h3>
       {/* <button onClick={this.handleUpdate}> Update</button> */}
-      {/* <button onClick={this.handleDelete}>Delete</button> */}
+      <button onClick={()=>this.handleDelete(item)}>Delete</button>
       <Router>
         <Link to="/Update"><button>Update</button></Link>
         <Route exact path="/Update">
