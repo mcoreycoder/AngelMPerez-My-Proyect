@@ -72,6 +72,7 @@ class Create extends React.Component{
     .then(function(response){
       arr = response.data
       console.log(response)
+      return arr
     })
     .catch(function(error){
       console.log(error)
